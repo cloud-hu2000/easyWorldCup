@@ -19,15 +19,21 @@
 }
 
 html {
+  min-height: 100%;
   scroll-behavior: smooth;
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
   margin: 0;
   color: var(--ink);
   background:
-    radial-gradient(circle at 18% 18%, rgba(7, 146, 68, 0.1), transparent 28rem),
-    linear-gradient(180deg, #ffffff 0%, #f7fbff 60%, #ffffff 100%);
+    radial-gradient(circle at 8% 14%, rgba(7, 146, 68, 0.1), transparent 28rem),
+    radial-gradient(circle at 88% 12%, rgba(49, 92, 246, 0.08), transparent 25rem),
+    linear-gradient(180deg, #ffffff 0%, #f5f9fc 54%, #eef5f3 100%);
 }
 
 a {
@@ -49,7 +55,7 @@ select {
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 2rem;
-  min-height: 4.5rem;
+  min-height: 3.6rem;
   padding: 0 2.7rem;
   background: rgba(255, 255, 255, 0.88);
   border-bottom: 1px solid rgba(210, 218, 230, 0.75);
@@ -60,15 +66,15 @@ select {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: 1.65rem;
+  font-size: 1.35rem;
   font-weight: 900;
   letter-spacing: 0;
 }
 
 .brand-ball {
   display: grid;
-  width: 2.7rem;
-  height: 2.7rem;
+  width: 2.25rem;
+  height: 2.25rem;
   place-items: center;
   border-radius: 999px;
   background: linear-gradient(135deg, #1abd66, #04783a);
@@ -84,7 +90,7 @@ select {
 
 .nav a {
   position: relative;
-  padding: 1.65rem 0;
+  padding: 1.15rem 0;
 }
 
 .nav .active {
@@ -114,11 +120,12 @@ select {
 }
 
 .try-button {
-  padding: 0.78rem 1.35rem;
+  padding: 0.58rem 1.15rem;
   border-radius: 0.65rem;
 }
 
 main {
+  flex: 1;
   width: min(120rem, calc(100% - 5.4rem));
   margin: 0 auto;
 }
@@ -335,7 +342,7 @@ main {
   gap: 2.4rem;
   align-items: start;
   padding-top: 0.6rem;
-  padding-bottom: 1.6rem;
+  padding-bottom: 4rem;
 }
 
 .main-column {
@@ -349,7 +356,7 @@ main {
   border: 1px solid var(--line);
   border-radius: 0.8rem;
   background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 0.9rem 2rem rgba(15, 23, 42, 0.06);
+  box-shadow: 0 1rem 2.4rem rgba(15, 23, 42, 0.07);
 }
 
 .generator {
@@ -446,6 +453,16 @@ h3 {
 .result-card {
   min-height: 9.3rem;
   padding: 1.1rem 1.35rem;
+  transition:
+    border-color 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.result-card:hover {
+  border-color: rgba(7, 146, 68, 0.25);
+  transform: translateY(-0.1rem);
+  box-shadow: 0 1.15rem 2.5rem rgba(15, 23, 42, 0.09);
 }
 
 .card-head {
@@ -537,6 +554,13 @@ h3 {
   padding: 1.6rem;
 }
 
+.schedule-panel {
+  border-color: rgba(7, 146, 68, 0.18);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 252, 250, 0.95)),
+    #fff;
+}
+
 .side-title {
   justify-content: space-between;
   margin-bottom: 1rem;
@@ -608,11 +632,20 @@ h3 {
   border-radius: 0.8rem;
   background: #fff;
   box-shadow: 0 0.65rem 1.3rem rgba(15, 23, 42, 0.05);
+  transition:
+    border-color 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
 }
 
 .match.active {
   border-color: rgba(7, 146, 68, 0.45);
   box-shadow: 0 0 0 0.18rem rgba(7, 146, 68, 0.08);
+}
+
+.match:hover {
+  transform: translateY(-0.08rem);
+  box-shadow: 0 0.85rem 1.5rem rgba(15, 23, 42, 0.08);
 }
 
 .tag {
@@ -709,26 +742,39 @@ h3 {
   line-height: 1.45;
 }
 
-footer {
+.site-footer {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 1.2rem;
   justify-content: space-between;
-  padding: 1.1rem 2.7rem;
+  margin-top: auto;
+  padding: 1.35rem 2.7rem;
   color: #667085;
   border-top: 1px solid var(--line);
-  background: #fff;
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(12px);
 }
 
-footer strong {
+.site-footer > div {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  align-items: center;
+}
+
+.site-footer strong {
   color: var(--ink);
 }
 
-footer nav {
+.site-footer nav {
   display: flex;
   flex-wrap: wrap;
   gap: 1.25rem;
+}
+
+.site-footer a:hover {
+  color: var(--green);
 }
 
 @media (max-width: 1100px) {
@@ -818,7 +864,7 @@ footer nav {
     grid-template-columns: 1fr;
   }
 
-  footer {
+  .site-footer {
     padding: 1rem;
   }
 }
