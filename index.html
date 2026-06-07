@@ -88,13 +88,20 @@
         <span>你的专属 AI 看球助理</span>
       </div>
       <nav aria-label="页脚导航">
-        <a href="#">关于我们</a>
-        <a href="#">使用教程</a>
-        <a href="#">反馈建议</a>
-        <a href="#">隐私政策</a>
+        <button type="button" data-footer-topic="about">关于我们</button>
+        <button type="button" data-footer-topic="feedback">反馈建议</button>
+        <button type="button" data-footer-topic="privacy">隐私政策</button>
       </nav>
     </footer>
 
-    <script src="script.js?v=5"></script>
+    <dialog class="footer-dialog" id="footerDialog" aria-labelledby="footerDialogTitle">
+      <div class="footer-dialog-card">
+        <button class="dialog-close" type="button" aria-label="关闭">×</button>
+        <h2 id="footerDialogTitle"></h2>
+        <div id="footerDialogBody"></div>
+      </div>
+    </dialog>
+
+    <script src="script.js?v=6"></script>
   </body>
 </html>

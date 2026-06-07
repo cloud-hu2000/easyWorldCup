@@ -756,6 +756,24 @@ const reasonsEl = document.querySelector("#reasons");
 const playersEl = document.querySelector("#players");
 const talkLinesEl = document.querySelector("#talkLines");
 const postsEl = document.querySelector("#posts");
+const footerDialog = document.querySelector("#footerDialog");
+const footerDialogTitle = document.querySelector("#footerDialogTitle");
+const footerDialogBody = document.querySelector("#footerDialogBody");
+
+const footerInfo = {
+  about: {
+    title: "关于我们",
+    body: "作者微信 cloudhu2000。如果你是技术小白，我正好也在做 AI 陪跑，欢迎联系。",
+  },
+  feedback: {
+    title: "反馈建议",
+    body: "作者微信 cloudhu2000。如果你是技术小白，我正好也在做 AI 陪跑，欢迎联系。",
+  },
+  privacy: {
+    title: "隐私政策",
+    body: "本应用为纯前端应用，不设置账号登录，不主动收集、存储或上传个人身份信息。页面内容与交互主要在你的浏览器本地运行；如页面加载国旗、球员图片等第三方公开资源，相关请求可能由资源提供方按其规则处理。若后续新增数据收集或服务端功能，将及时在页面中更新说明。",
+  },
+};
 
 function flagUrl(code) {
   return `https://flagcdn.com/w80/${code}.png`;
@@ -911,6 +929,24 @@ nextPageButton.addEventListener("click", () => {
   if (currentPage >= totalPages - 1) return;
   currentPage += 1;
   setActiveMatch(currentPage * pageSize);
+});
+
+document.querySelectorAll("[data-footer-topic]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const info = footerInfo[button.dataset.footerTopic];
+    if (!info) return;
+    footerDialogTitle.textContent = info.title;
+    footerDialogBody.innerHTML = `<p>${escapeHtml(info.body)}</p>`;
+    footerDialog.showModal();
+  });
+});
+
+footerDialog.querySelector(".dialog-close").addEventListener("click", () => footerDialog.close());
+
+footerDialog.addEventListener("click", (event) => {
+  if (event.target === footerDialog) {
+    footerDialog.close();
+  }
 });
 
 setActiveMatch(findInitialMatchIndex());
